@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style media="screen">
+      body{
+  margin: auto;
+  position: absolute;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>Main page </title>
+    <script type="text/javascript">
+      function perform(){
+        var reg = /^\d+$/;
+        selectElement = document.querySelector('#cs2');
+        to=  selectElement.options[selectElement.selectedIndex].value;
+        selectElement = document.querySelector('#cs1');
+        from =  selectElement.options[selectElement.selectedIndex].value;
+        var amount=document.getElementById('input1').value;
+        if(reg.test(amount))
+        {
+        var display=0;
+        if(from=="rupee")
+        {
+
+          switch(to){
+            case "dollars": display=amount*0.0152;break;
+            case "euro":display=amount*0.0115;break;
+            case "yen":display=amount*1.5054;break;
+            case "rupee":display=amount;alert("both are same");break;
+          }
+          //document.write(display);
+        }
+        else if(from=="dollars")
+        {
+          switch (to) {
+            case "rupee":display=amount/0.0152;break;
+            case "euro": display=amount*0.7579;break;
+            case "yen": display=amount*99.3542;break;
+            case "dollars": display=amount; alert("Both are same");break;
+          }
+        }
+        else if(from=="euro")
+        {
+          switch (to) {
+            case "rupee":display=amount*87.0776;break;
+            case "yen":display=amount*131.0879;break;
+            case "dollars":display=amount*1.3194;break;
+            case "euro":display=amount; alert("Both are same");break;
+
+          }
+        }
+        else if(from=="yen")
+        {
+          switch(to)
+          {
+            case "rupee":display=amount*0.0152;break;
+            case "dollars":display=amount*0.0101;break;
+            case "euro":display=amount*1.3194;break;
+            case "yen":display=amount; alert("Both are same");break;
+          }
+        }
+        document.write("Value from "+from+" to "+to+" is ");
+        document.write(display);
+        //document.getElementById('input2').value=display;
+        //document.getElementById("edited").value=display;
+      }
+      else{
+        alert("Wrong input");
+      }
+    }
+    </script>
+
+  </head>
+  <body>
+    <form name="form1">
+    <div class="container" name="maindiv">
+      <div class="row">
+      <title>Currency converter</title>
+      <p style="color:blue;font-size:160%" width="20"> Currency converter</p>
+      <div  class="col-sm-4" name="subc1">
+      <label for="selectcurrency"></label>
+      <div class="form-group">
+      Convert from
+      <select class="form-control" id="cs1">
+        <option value="rupee">Rupee</option>
+        <option value="euro">Euros</option>
+        <option value="dollars">Dollars</option>
+        <option value="yen">Yen</option>
+      </select>
+
+      </div>
+      <input type="text" placeholder="Enter amount..." id="input1"></input>
+      <br><br>
+      <div class="form-group">
+        Convert to
+        <select class="form-control" id="cs2">
+          <option value="rupee">Rupee</option>
+          <option value="euro">Euros</option>
+          <option value="dollars">Dollars</option>
+          <option value="yen">yen</option>
+        </select>
+      </div>
+        <!--<input type="text"  id="input2"></input>-->
+      <br><br>
+      <button type="button" class="btn btn-primary btn-lg" name="submitbt1"  onclick="perform()">Convert</button>
+      </div>
+        <!--<p id="edited"> Here </p>-->
+    </div>
+    </div>
+    </form>
+  </body>
+</html>
